@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../models/user';
@@ -8,6 +8,11 @@ import { User } from '../models/user';
 })
 export class UserService {
   apiUrl = 'https://sheet.best/api/sheets/dc8068ed-eafe-4f00-920b-c8415a4c8eb7';
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  }
 
   constructor(private httpClient: HttpClient) { }
 
@@ -20,6 +25,6 @@ export class UserService {
 
   //Salva usuario no banco de dados (CRUD - CREATE)
   postUser(user: User): Observable<User> {
-    return this.httpClient.post<User>(this.apiUrl, user)
+    return this.httpClient.post<User>(this.apiUrl, user, this.httpOptions)
   }
 }
