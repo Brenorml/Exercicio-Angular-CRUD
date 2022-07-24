@@ -37,5 +37,5 @@ export class UserFormComponent implements OnInit {
     this.userService.postUser(this.userForm.value).subscribe(result => {
       console.log(`Usuario ${result.nome} ${result.sobrenome} cadastrado com sucesso!`)
     })
-  }
+  }  
 }
